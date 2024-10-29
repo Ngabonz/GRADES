@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class GradeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> studentGrades = new ArrayList<>();
+
+        System.out.println("Enter the number of students: ");
+        int numberOfStudents = scanner.nextInt();
+        for (int i = 0; i < numberOfStudents; i++) {
+            System.out.println("Enter grade for student " + (i + 1) + ": ");
+            int grade = scanner.nextInt();
+            studentGrades.add(grade);
+        }
+
+        System.out.println("Grades entered: " + studentGrades);
+
+        double average = calculateAverage(studentGrades);
+        int highest = findHighest(studentGrades);
+        int lowest = findLowest(studentGrades);
+
+        System.out.println("Average grade: " + average);
+        System.out.println("Highest grade: " + highest);
+        System.out.println("Lowest grade: " + lowest);
+
+        scanner.close();
+    }
+
+    private static double calculateAverage(ArrayList<Integer> studentGrades) {
+        int sum = 0;
+        for (int grade : studentGrades) {
+            sum += grade;
+        }
+        return (double) sum / studentGrades.size();
+    }
+
+    private static int findHighest(ArrayList<Integer> studentGrades) {
+        int highest = studentGrades.get(0);
+        for (int grade : studentGrades) {
+            if (grade > highest) {
+                highest = grade;
+            }
+        }
+        return highest;
+    }
+
+    private static int findLowest(ArrayList<Integer> studentGrades) {
+        int lowest = studentGrades.get(0);
+        for (int grade : studentGrades) {
+            if (grade < lowest) {
+                lowest = grade;
+            }
+        }
+        return lowest;
+    }
+}
